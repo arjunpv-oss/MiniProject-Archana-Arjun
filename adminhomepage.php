@@ -14,6 +14,30 @@ if($conn->connect_error){
 </head>
 <style>
 
+
+
+    .topnav {
+        overflow: hidden;
+        background-color: green;
+
+    }
+
+    .topnav a {
+        float:left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 16px 20px;
+        text-decoration: none;
+        font-size: 26px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: orangered;
+    }
+
+
+
     body{
         background-image: url("adminaddimage.jpg");
         background-repeat: no-repeat;
@@ -21,7 +45,21 @@ if($conn->connect_error){
         alignment: center;
     }
 </style>
-<a href="menu.html" name="back" style="color:blue">Back</a>
+<body>
+<div class="topnav">
+    <a class="active" href="adminhomepage.php">Add Image</a>
+    <a href="adminofferpage.php">Offers</a>
+    <a href="#contact">Add Slot</a>
+    <a href="#about">Car-dining</a>
+    <a href="#about">Outside-dining</a>
+    <a href="addfoodcategory.php">Home-delivery</a>
+    <a href="#about">Orders</a>
+    <a href="dboyreg.php">Delivery boys</a>
+    <a href="#about">Report</a>
+    <a href="login.php">Logout</a>
+</div>
+
+
 <br>
 <div class="container">
     <h1 align="center" style="color: maroon"><center>ADD IMAGES</center></h1><br>

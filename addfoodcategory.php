@@ -9,30 +9,6 @@ $conn=mysqli_connect($host,$user,$pass,$db);
 if(!$conn){
     die('Could not connect to mysql: ' .mysql_error());
 }
-if(isset($_POST['submit'])) {
-
-    $category_name = $_POST['category_name'];
-    $category_image = $_POST['category_image'];
-
-
-
-
-        $sql = "INSERT INTO food_category (category_id,category_name,category_image) VALUES ('','$category_name','$category_image')";
-
-
-        $conn = mysqli_connect('localhost', 'root', '', "tasteohub");
-
-        if (mysqli_query($conn, $sql)) {
-            $message = "successful...";
-
-            echo "<script type='text/javascript'>alert('successful...\\n Category added');
-window.location.href='addfoodcategory.php';</script>";
-
-        }
-    }
-    $conn->close();
-
-
 ?>
 
 
@@ -45,6 +21,27 @@ window.location.href='addfoodcategory.php';</script>";
 
 </head>
 <style>
+
+
+    .topnav {
+        overflow: hidden;
+        background-color: green;
+    }
+
+    .topnav a {
+        float:left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 16px 20px;
+        text-decoration: none;
+        font-size: 26px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: orangered;
+    }
+
     body{
         background-image: url("addfoodcategory.jpg");
         background-repeat: no-repeat;
@@ -52,12 +49,21 @@ window.location.href='addfoodcategory.php';</script>";
     }
 </style>
 <body>
+<div class="topnav">
+    <a class="active" href="adminhomepage.php">Add Image</a>
+    <a href="adminofferpage.php">Offers</a>
+    <a href="#contact">Add Slot</a>
+    <a href="#about">Car-dining</a>
+    <a href="#about">Outside-dining</a>
+    <a href="addfoodcategory.php">Home-delivery</a>
+    <a href="#about">Orders</a>
+    <a href="dboyreg.php">Delivery boys</a>
+    <a href="#about">Report</a>
+    <a href="login.php">Logout</a>
+</div>
 
-<br>
-<br>
-<form method="post">
-    <p align="left">
-        <a href="menu.html" name="back" style="color:blue">Back</a>
+
+
 
         <script type="text/javascript">
             document.getElementById("myButton").onclick = function () {
@@ -66,24 +72,20 @@ window.location.href='addfoodcategory.php';</script>";
         </script>
 
 
+<form method="post" action="insertfoodcategory.php">
 
-
-
+    <div class="container">
     <h1><center>ADD FOOD CATEGORY</center></h1><br><br>
-    <p align="center">Category Name:
+
+    <p align="center">Category Name
     <input type="text" name="category_name" placeholder="Category Name" required><br><br>
     <p align="center">
+
         <input type="file" name="category_image" required></p>
-    </div></p><br>
-
-    <center><button type="submit" name ="submit" value="submit" style=" background-color:darkblue; height: 30px; width: 90px; color:white">Add</button></center>
-
+    <center><button type="submit" name ="submit"  style=" background-color:darkblue; height: 30px; width: 90px; color:white">Add</button></center>
+    </form>
 
 
-
-
-
-</form>
 
 </body>
 <?php
@@ -124,7 +126,7 @@ if(!$conn)
                 <div class="row">
                     <div class="col-md-12">
                         <div class="page-header clearfix">
-                            <br><br><br><br><h2 class="pull-left"><center>Category List</center></h2><br><br>
+                            <br><br><h2 class="pull-left"><center>Category List</center></h2><br><br>
                         </div>
 
                     </div>
@@ -135,49 +137,34 @@ if(!$conn)
 
 
 
-
-
-    <?php
-
-    $result = mysqli_query($conn,"SELECT * FROM food_category");
-    ?>
-    <?php
-    if (mysqli_num_rows($result) > 0) {
-        ?>
-
         <table class='table table-bordered table-striped' align="center">
 
-            <?php
-            $i=0;
-            while($row = mysqli_fetch_array($result)) {
-                ?>
-                <tr>
-                    <td><?php echo $row["category_name"]; ?></td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                    <td> <button><a href="addfooditems.php?op=add&category_name=<?php echo  $row['category_id']?> ">ADD ITEMS</button></td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                    <td> <button style="background-color: #0c4128"><a href="deletefoodcategory.php?op=delete&category_name=<?php echo  $row['category_name']?> " style="color: white">DELETE</a></button>
+    <?php
 
+
+
+    $data="SELECT * FROM food_category";
+
+
+    $result= mysqli_query($conn,$data);
+
+     while($row=mysqli_fetch_array($result)){
+         ?>
+         <tr>
+
+
+
+                    <td><?php echo $row["category_name"]; ?></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td>
+             <td> <button type="submit" name="submit"><a href="addfooditems.php?category_id=<?php echo  $row['category_id']?> ">ADD ITEMS</button></td></form>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td> <button type="submit" style="background-color: #0c4128"><a href="deletefoodcategory.php?category_image=<?php echo  $row['category_image']?>" style="color: white">DELETE</a></button>
 
                 </tr>
-                <?php
-                $i++;
-            }
-            ?>
-        </table>
-
-        <?php
-    }
-    else{
-        echo "No result found";
-    }
+         <?php
+     }
     ?>
-    </div>
-    </div>
-    </div>
-    </div>
-</font>
+        </table>
+        </div>
 </body>
-</html>
-
 </html>

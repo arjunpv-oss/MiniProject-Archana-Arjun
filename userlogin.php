@@ -6,42 +6,6 @@ $conn=mysqli_connect($url,$username,'',"tasteohub");
 
 session_start();
 $_SESSION['username'] = "<?php echo {['$username']} ?>";
-if(isset($_POST['save']))
-{
-    $username=$_POST['username'];
-    $password=$_POST['password'];
-    $usertype="USER";
-
-    $check_user="select * from register WHERE User_Name='$username'AND Password='$password'";
-
-    $run=mysqli_query($conn,$check_user);
-
-
-
-    if(mysqli_num_rows($run)) {
-
-
-            $_SESSION['User_Name'] = $username;
-
-
-            echo "<script>window.open('userhomepage.php','_self')</script>";
-
-
-            //$_SESSION['user']=$username;//here session is used and value of $user_email store in $_SESSION.
-            //header("Location:userprofile.php");
-
-
-
-    }
-
-
-    else
-    {
-        echo "<script>alert('Username or password is incorrect!')</script>";
-    }
-
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,12 +49,66 @@ if(isset($_POST['save']))
         </div>
         <div class="form-group">
             <center><button type="submit" name="save" class="btn btn-success btn-lg btn-block" style="width: 200px">Login</button></center>
+            <?php
+            if(isset($_POST['save']))
+            {
+                $username=$_POST['username'];
+                $password=$_POST['password'];
+                $usertype="USER";
+
+                $check_user="select * from register WHERE User_Name='$username'AND Password='$password'";
+
+                $run=mysqli_query($conn,$check_user);
+
+
+
+                if($data=mysqli_num_rows($run)) {
+
+
+                   session_start();
+                    $_SESSION['username'] = $username;
+
+                    // $_SESSION['user']=$username;//here session is used and value of $user_email store in $_SESSION.
+                    header("Location:userhomepage.php");
+
+                }
+
+
+                else
+                {
+                    echo "<script>alert('Username or password is incorrect!')</script>";
+                    echo "<script>window.open('userlogin.php','_self')</script>";
+                }
+
+
+            }
+
+            ?>
         </div>
         <div class="text-center">Don't have an account? <a href="userregistration.php">Register Here</a></div>
     </form>
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

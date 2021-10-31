@@ -18,19 +18,12 @@ if(isset($_POST['save'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $usertype = "Delivery boy";
-
-
     $check_user = "select * from deliveryboy_registration WHERE username='$username'AND password='$password'";
-
-
     $run = mysqli_query($conn, $check_user);
 
     if (mysqli_num_rows($run)) {
-        echo "<script>window.open('menu.html','_self')</script>";
+        echo "<script>window.open('userhomepage.php','_self')</script>";
     }
-
-
-
 
     else {
         echo "<script>alert('Username or password is incorrect!')</script>";
@@ -62,7 +55,7 @@ if(isset($_POST['save'])) {
 
 <body>
 <div class="signup-form">
-    <form method="post" enctype="multipart/form-data" >
+    <form method="post" enctype="multipart/form-data">
        <br><br><br><br><br><br><h2><center>Delivery boy Login</center></h2><br><br>
         <center><p class="hint-text">Enter Login Details</p></center>
         <div class="form-group">

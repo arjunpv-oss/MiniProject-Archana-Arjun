@@ -3,16 +3,11 @@ $servername="localhost";
 $username="root";
 $password="";
 $dbname="tasteohub";
-$conn=new mysqli($servername, $username, $password, $dbname);
-if($conn->connect_error){
-    die("Connection failed:".$conn->connect_error);
-}
+$conn= mysqli_connect($servername, $username, $password, $dbname);
 
-if ($_GET['op']=="delete")
-{
-    $del_category=$_GET['category_name'];
-    $query= "DELETE FROM food_category WHERE category_name='$del_category'";
-    $result=mysqli_query($conn,$query);
+    $del_category=$_GET['category_image'];
+
+    $result=mysqli_query($conn,"DELETE FROM food_category WHERE category_image='$del_category'");
 
     if ($result){
         ?>
@@ -21,7 +16,7 @@ if ($_GET['op']=="delete")
             window.location.href='addfoodcategory.php?deleted';
         </script>
         <?php
-        unlink("uploads/$del_category");
+        unlink("food/$del_category");
     }
     else{
         ?>
@@ -31,5 +26,5 @@ if ($_GET['op']=="delete")
         </script>
         <?php
     }
-}
+
 ?>

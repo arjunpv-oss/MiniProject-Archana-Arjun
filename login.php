@@ -17,7 +17,8 @@ if($_POST) {
 
     else {
         $message= "Username and/or password incorrect.\\nTry again";
-        echo "<script type='text/javascript'>alert('Invalid username or password');</script>script>";
+        echo "<script type='text/javascript'>alert('Invalid username or password');</script>";
+
 
 
 

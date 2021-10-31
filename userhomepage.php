@@ -1,6 +1,5 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'tasteohub')
-  or trigger_error('Connection failed.', E_USER_NOTICE);
+$conn = mysqli_connect("localhost","root","","tasteohub");
 
 $conn->set_charset('utf8');
 $paths = [];
@@ -8,10 +7,12 @@ $dir = "./uploads"; // images directory (change to suit)
 
 $stmt = $conn->prepare("SELECT `file_name` FROM `tbl_images`");
 $stmt->execute();
+
 $stmt->bind_result($file);
-while ($stmt->fetch()){
-  $paths[] = $dir . "/" . $file;
+while ($stmt->fetch()) {
+    $paths[] = $dir . "/" . $file;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +25,9 @@ while ($stmt->fetch()){
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
+
+
+
 <input type="checkbox" id="check">
 <label for="check">
     <i class="fas fa-bars" id="btn"></i>
@@ -34,14 +38,14 @@ while ($stmt->fetch()){
 <div class="sidebar">
     <header>Taste 'O' Hub</header>
      <ul>
-        <li><a href="userprofile.php"><i class=""></i>View Profile</a> </li>
+        <li><a href="profile.php"><i class=""></i>View Profile</a> </li>
         <li><a href="#"><i class=""></i>Categories</a> </li>
         <li><a href="addslot.php"><i class=""></i>Order history</a> </li>
-        <li><a href="#"><i class=""></i>Offers</a> </li>
+        <li><a href="userviewoffer.php"><i class=""></i>Offers</a> </li>
         <li><a href="#"><i class=""></i>Notifications</a> </li>
         <li><a href="foodcategory.php"><i class=""></i>About Us</a> </li>
         <li><a href="#"><i class=""></i>Share</a> </li>
-        <li><a href="#"><i class=""></i>Logout</a> </li>
+        <li><a href="userlogout.php"><i class=""></i>Logout</a> </li>
     </ul>
 </div>
   <!-- may set first image src in markup so initially visible -->

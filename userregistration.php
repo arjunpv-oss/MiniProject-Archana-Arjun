@@ -19,8 +19,6 @@ if(isset($_POST['submit'])) {
 
 if (strcmp($pass, $cpass) !== 0) {
    echo "Password do not match";
-   
-
 
 }
 
@@ -100,7 +98,7 @@ if (strcmp($pass, $cpass) !== 0) {
             <input type="password" class="form-control" name="pass" placeholder="Password"  minlength="6"  maxlength="8" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" name="cpass" placeholder="Confirm Password" required="required">
+            <input type="password" class="form-control" name="cpass" placeholder="Confirm Password" minlength="6"  maxlength="8" required="required">
         </div>
 
         <div class="form-group">

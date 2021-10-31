@@ -10,6 +10,7 @@ if(!$conn){
     die('Could not connect to mysql: ' .mysql_error());
 }
 if(isset($_POST['submit'])) {
+
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];
     $email_id = $_POST['email_id'];
@@ -18,12 +19,16 @@ if(isset($_POST['submit'])) {
 
     $address = $_POST['address'];
     $image = $_POST['image'];
-    $usertype="Delivery boy";
-    $status="Available";
+    $usertype = "Delivery boy";
+    $status = "Available";
 
     $date = date('y-m-d');
     $sql = "select * from deliveryboy_registration where (email_id='$email_id')";
     $res = mysqli_query($conn, $sql);
+
+
+
+
     if (mysqli_num_rows($res)) {
         // output data of each row
         $row = mysqli_fetch_assoc($res);
@@ -33,6 +38,8 @@ if(isset($_POST['submit'])) {
             echo "<script type='text/javascript'>alert('Registration failed...\\n Email id already exists');</script>";
         }
     }
+
+
 
      else {
          $sql = "INSERT INTO deliveryboy_registration (d_date,fullname,username,email_id,password,phoneno,status,address,image) VALUES ('$date','$fullname','$username','$email_id','$password','$phoneno','$status','$address','$image')";
@@ -71,7 +78,32 @@ if(isset($_POST['submit'])) {
 <style>
 
 
-    body{
+    .topnav {
+        overflow: hidden;
+        background-color: green;
+    }
+
+    .topnav a {
+        float:left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 16px 20px;
+        text-decoration: none;
+        font-size: 25px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: orangered;
+    }
+
+
+
+
+
+
+
+body{
         background-image: url("registration.jpg");
         background-repeat: no-repeat;
         background-size: cover;
@@ -79,13 +111,23 @@ if(isset($_POST['submit'])) {
 </style>
 
 
-        <a href="menu.html" name="back" style="color:white">Back</a>
-
 
 <body>
+<div class="topnav">
+    <a class="active" href="adminhomepage.php">Add Image</a>
+    <a href="adminofferpage.php">Offers</a>
+    <a href="#contact">Add Slot</a>
+    <a href="#about">Car-dining</a>
+    <a href="#about">Outside-dining</a>
+    <a href="addfoodcategory.php">Home-delivery</a>
+    <a href="#about">Orders</a>
+    <a href="dboyreg.php">Delivery boys</a>
+    <a href="#about">Report</a>
+    <a href="login.php">Logout</a>
+</div>
 <div class="registration-form">
 
-    <h1>Registration Form</h1>
+   <br><br><br> <h1>Registration Form</h1>
 
 
     <form method="post">
@@ -97,10 +139,12 @@ if(isset($_POST['submit'])) {
         <input type="email" name="email_id" placeholder="Email" required>
         <p>Password:</p>
         <input type="password" name="password" placeholder="Password" minlength="6" maxlength="8" required>
-        <p>Phone Number:</p>
+        <p><br>Phone Number </p>
+        <!-- html input type=tel for phone number which contain a pattern -->
+        <input type="text" pattern="[0-9]{9}" maxlength="10" placeholder="phone number[0-9 only]" required>
 
-        <input type="tel" name="phoneno" placeholder="Number"  minlength="10" maxlength="10" required>
-                <p>Address:</p>
+
+        <p>Address:</p>
         <textarea placeholder="Address"    name="address"   cols="51" rows="5"></textarea>
         <div class="container">
             <input type="file" name="image">
