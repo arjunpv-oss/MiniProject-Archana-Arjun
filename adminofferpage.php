@@ -32,7 +32,7 @@
 
 
   body{
-    background-image: url("adminoffer.jpg");
+    background-image: url("adminofferimage.jpg");
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -53,7 +53,7 @@
 <div class="topnav">
   <a class="active" href="adminhomepage.php">Add Image</a>
   <a href="adminofferpage.php">Offers</a>
-  <a href="#contact">Add Slot</a>
+  <a href="adminaddslot.php">Add Slot</a>
   <a href="#about">Car-dining</a>
   <a href="#about">Outside-dining</a>
   <a href="addfoodcategory.php">Home-delivery</a>
@@ -71,17 +71,17 @@
 <div align="center">
   <div class="adminofferpage-form">
 
-<p align="right"><a href="viewoffer.php" style="color: white">VIEW ALL</a></p>
 
-  <center><h1 style="color: white;margin-top: 1px" ><u>OFFERS</u></h1></center>
+
+  <center><h1 >OFFERS</h1></center><p align="right"><a href="viewoffer.php">VIEW ALL</a></p>
 
 
   <form method="post">
 
 
 
-    <p style="color: white" ><b>category Name</b>
-        <select style="width: 500px;height: 30px">
+   <b>category Name</b>
+        <select name="category_id" style="width: 500px;height: 30px" required>
             <option disabled selected>-- Select category --</option>
             <?php
             $host = "localhost";
@@ -92,64 +92,63 @@
 
             $conn=mysqli_connect($host,$user,$pass,$db);
             // Using database connection file here
-            $records = mysqli_query($conn, "SELECT category_name From food_category");  // Use select query here
+            $records = mysqli_query($conn, "SELECT * From food_category");  // Use select query here
 
-            while($data = mysqli_fetch_array($records))
+            while ($row = mysqli_fetch_assoc($records))
             {
-                echo "<option value='". $data['category_name'] ."'>" .$data['category_name'] ."</option>";  // displaying data in option menu
+                ?>
+                <option value="<?php echo $row['category_id'] ?>">
+                    <?php echo $row['category_name'] ?></option>
+                <?php
             }
-
-
-
-
-            if (isset($_POST['submit'])) {
-
-                $category_name = $data['category_name'];
-                $offer_percentage = $_POST['offerpercentage'];
-                $valid_from = $_POST['validfrom'];
-                $valid_to = $_POST['validto'];
-                $coupon_code = $_POST['couponcode'];
-                $description = $_POST['description'];
-
-
-                $sql = "INSERT INTO offer (offer_id,category_name,offer_percentage,valid_from,valid_to,coupon_code,description) VALUES ('','$category_name','$offer_percentage','$valid_from','$valid_to','$coupon_code','$description')";
-
-
-                $conn = mysqli_connect('localhost', 'root', '', "tasteohub");
-
-                if (mysqli_query($conn, $sql)) {
-                    $message = "successful...";
-
-                    echo "<script type='text/javascript'>alert('successful...\\n offer added');
-window.location.href='adminofferpage.php';</script>";
-
-                }
-
-
-            }
-
 
             ?>
 
-        </select>   <br><br> <br> <p style="color: white"><b>Offer percentage</b>
+        </select>   <br><br> <br> <b>Offer percentage</b>
           <input type="number" name="offerpercentage" style="width: 480px;height: 30px" placeholder="offer percentage(%)" required></p><br>
-      <p style="color: white"><b>Valid From</b>
+      <b>Valid From</b>
           <input type="date" name="validfrom" style="width: 520px;height: 30px" placeholder="valid from" required></p>
       <br>
-      <p style="color: white"><b>Valid To</b>
+     <b>Valid To</b>
           <input type="date" name="validto" style="width: 550px;height: 30px" placeholder="valid to"  required></p>
       <br>
-      <p style="color: white" ><b>Coupon code</b>
+      <b>Coupon code</b>
           <input type="text" name="couponcode" style="width: 510px;height: 30px" placeholder="coupon code" required ></p><br>
-      <p style="color: #0c0b09;width: 600px;alignment: center">
+
           <textarea placeholder="Description"    name="description"   cols="40" rows="5" style="width: 500px;alignment: center"></textarea>
           <br><br>
 
 
-          <button type="submit" name ="submit" value="submit" style="background-color: #0c4128; color: white; width: 100px; height: 30px">ADD OFFER</button>
+          <button type="submit" name ="submit" value="submit" style="background-color: #0c4128; color: white; width: 100px; height: 50px">ADD OFFER</button>
+<?php
+          if (isset($_POST['submit'])) {
+
+          $category_id = $_POST['category_id'];
+          $offer_percentage = $_POST['offerpercentage'];
+          $valid_from = $_POST['validfrom'];
+          $valid_to = $_POST['validto'];
+          $coupon_code = $_POST['couponcode'];
+          $description = $_POST['description'];
 
 
+          $sql = "INSERT INTO offer (offer_id,category_id,offer_percentage,valid_from,valid_to,coupon_code,description) VALUES ('','$category_id','$offer_percentage','$valid_from','$valid_to','$coupon_code','$description')";
 
+
+          $conn = mysqli_connect('localhost', 'root', '', "tasteohub");
+
+          if (mysqli_query($conn, $sql)) {
+          $message = "successful...";
+
+          echo "<script type='text/javascript'>alert('successful...\\n offer added');
+              window.location.href='adminofferpage.php';</script>";
+
+          }
+
+
+          }
+
+
+?>
 
 
   </form>

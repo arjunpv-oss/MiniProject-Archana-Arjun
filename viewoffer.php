@@ -38,7 +38,7 @@ die('Could not connect to mysql: ' .mysql_error());
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Doc</title>
+<title>View offer</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
@@ -67,7 +67,7 @@ die('Could not connect to mysql: ' .mysql_error());
     <table class="table" style="width: 800px;margin-left: 300px">
         <thead>
         <tr style="margin-left: 300px">
-            <th>offer id</th>
+
             <th>Category Name</th>
             <th>offer %</th>
             <th>valid from</th>
@@ -87,7 +87,7 @@ die('Could not connect to mysql: ' .mysql_error());
 
     <?php
 
-    $data="SELECT * FROM offer";
+    $data="SELECT offer.offer_id,offer.offer_percentage,offer.valid_from,offer.valid_to,offer.coupon_code,food_category.category_name FROM offer inner join food_category on offer.category_id=food_category.category_id";
 
 
     $result= mysqli_query($conn,$data);
@@ -97,19 +97,14 @@ die('Could not connect to mysql: ' .mysql_error());
 
 
         <tr>
-            <td><?php echo $row["offer_id"]; ?></td>
+
             <td><?php echo $row["category_name"]; ?></td>
-            <td><?php echo $row["offer_percentage"]; ?></td>
+            <td><?php echo $row["offer_percentage"];?></td>
             <td><?php echo $row["valid_from"]; ?></td>
             <td><?php echo $row["valid_to"]; ?></td>
             <td><?php echo $row["coupon_code"]; ?></td>
+            <td><button style="color: white;background-color: green"><a style="background-color: green;color: white;width: 300px;height: 40px" href="updateadminoffer.php?op=update&offerid=<?php echo  $row['offer_id']?>" >UPDATE</a></button></td>
 
-
-
-               <td> <button style="background-color: #0c4128">
-
-                   <a href="updateadminoffer.php?op=update&id=<?php echo $row['offer_id']?>" style="color: white">UPDATE</a></button><br><br>
-               </td>
         </tr>
         <?php
     }

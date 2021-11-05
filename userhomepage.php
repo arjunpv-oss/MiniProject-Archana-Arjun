@@ -1,6 +1,10 @@
 <?php
 $conn = mysqli_connect("localhost","root","","tasteohub");
+session_start();
 
+$result= mysqli_query($conn,"SELECT * FROM register WHERE User_Name='" . $_SESSION['username'] . "'");
+
+$row=mysqli_fetch_array($result);
 $conn->set_charset('utf8');
 $paths = [];
 $dir = "./uploads"; // images directory (change to suit)
@@ -38,8 +42,8 @@ while ($stmt->fetch()) {
 <div class="sidebar">
     <header>Taste 'O' Hub</header>
      <ul>
-        <li><a href="profile.php"><i class=""></i>View Profile</a> </li>
-        <li><a href="#"><i class=""></i>Categories</a> </li>
+        <li><a href="profile.php?id=<?php echo $row["id"];?>"><i class=""></i>View Profile</a> </li>
+        <li><a href="usercategory.html"><i class=""></i>Categories</a> </li>
         <li><a href="addslot.php"><i class=""></i>Order history</a> </li>
         <li><a href="userviewoffer.php"><i class=""></i>Offers</a> </li>
         <li><a href="#"><i class=""></i>Notifications</a> </li>

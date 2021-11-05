@@ -1,129 +1,97 @@
 <?php
-$url="localhost";
-$username="root";
-$password="";
-$conn=mysqli_connect($url,$username,'',"tasteohub");
 
-session_start();
-$_SESSION['username'] = "<?php echo {['$username']} ?>";
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "tasteohub";
+
+$conn = mysqli_connect($host, $user, $pass, $db);
+if (!$conn) {
+    die('Could not connect to mysql: ' . mysqli_error());
+}
+
+    $result = mysqli_query($conn, "SELECT * from register WHERE id='" . $_GET['id'] . "'");
+    $row = mysqli_fetch_array($result);
+
+
+
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="foodstyle.css">
+    <title>view profile</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-    <title>User Profile</title>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+
+
 
 </head>
 <style>
 
     body{
-
-        background-image: url("userlogin.jpg");
+        background-image: url("update.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         alignment: center;
     }
 </style>
-<link rel="stylesheet" type="text/css" href="./userstyle.css">
 <body>
 
-<div class="login-form">
-
-    <form method="post" enctype="multipart/form-data">
-        <br><br><h2><center></center></h2>
-        <p class="hint-text"><center>Enter password To Authenticate user</center></p><br><br>
-        <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="password" required="required">
-        </div><br>
-
-        <div class="form-group">
-            <center><button type="submit" name="save" class="btn btn-success btn-lg btn-block" style="width: 200px; background-color: green;color: white">Go</button></center></div>
-    </form><br><br>
-
-
-            <?php
-            if(isset($_POST['save']))
-            {
-                $password=$_POST['password'];
-
-                $usertype="USER";
-
-                $check_user="select * from register WHERE Password='$password'";
-
-                $run=mysqli_query($conn,$check_user);
-
-
-
-                if($data=mysqli_fetch_array($run)) {
-
-            ?>
-
-
-
-                <div class="main" style="margin: 200px;">
-                    <form action="userprofile1.php" method="post" enctype="multipart/form-data">
-
-                        Firstname
-                        <input type="text" value="<?php echo $data['First_Name']; ?>" name="firstname" required /><br>
-
-                        Lastname
-                        <input type="text" value="<?php echo $data['Last_Name']; ?>" name="lastname" required /><br>
-
-                        Username
-                        <input type="text" value="<?php echo $data['User_Name']; ?>" name="username" required /><br>
-
-
-
-                        Email
-                        <input type="text"  value="<?php echo $data['Email']; ?>" name="email" required/><br>
-
-
-                        Address
-                        <input type="text" value="<?php echo $data['Address']; ?>" name="address" required/></textarea><br>
-
-                        Area
-                        <input type="text"  value="<?php echo $data['Area']; ?>" name="area" required/><br>
-
-                        Phonenumber
-                        <input type="text" value="<?php echo $data['Phonenumber']; ?>" name="phonenumber" required/><br>
-
-                        <center><button type="submit" name="update" class="btn btn-success btn-lg btn-block" style="width: 200px; background-color: green;color: white">Change</button></center></form></div></div>
-                </div>
-</center>
 
 
 
 
 
-            <?php
-                }
+    <form action="userprofile1.php?id=<?php echo $row["id"];?>" method="post"><br><br>
+
+<center><h1>PROFILE DETAILS</h1></center>
+<br>
+
+              <center> First Name
+
+                <input type="text" value="<?php echo $row['First_Name'] ;?>" name="first_name" id="" required><br><br>
+
+              </center>
+        <center>
+            Last Name
+        <input type="text" value="<?php echo $row['Last_Name'];?>" name="last_name" id="" required><br><br>
+        </center>
+        <center>
+                user Name
+        <input type="text" value=" <?php echo $row['User_Name'];?>" name="user_name" id="" required><br><br>
 
 
-                else
-                {
-                    echo "<script>alert('Cannot access profile')</script>";
-                    echo "<script>window.open('profile.php','_self')</script>";
-                }
+        </center>
+        <center>
+           Email
+        <input type="text" value=" <?php echo $row['Email'];?>" name="email" id="" required><br><br>
+        </center>
+        <center>
+               Address
 
+        <input type="text" value=" <?php echo $row['Address'];?>" name="address" id="" style="width: 400px;height: 50px" required><br><br>
+        </center>
+        <center>
 
-            }
+        Area
+        <input type="text" value=" <?php echo $row['Area'];?>" name="area" id="" required><br><br>
 
-            ?>
-        </div>
+        </center>
+        <center>
+
+        Phone Number
+        <input type="text" value="<?php echo $row['Phonenumber'];?>" name="phoneno" id="" required><br><br>
+        </center>
+        <center>
+        Password
+        <input type="text" value="<?php echo $row['Password'];?>" name="password" id="" required><br><br>
+            <input type="hidden" name="id" class="txtField" value="<?php echo  $row['id'];?>">
+
+        <br>
+        <center><button type="submit" name="update" class="btn" style="background-color: green;color: white;height: 50px;width: 100px">UPDATE</button></center>
     </form>
 </div>
 </body>
 </html>
-
-
-
-
-
-

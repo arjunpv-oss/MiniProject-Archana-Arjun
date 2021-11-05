@@ -46,7 +46,7 @@ if ($_GET['op']=="update")
                 <input type="text" value="<?php echo  $data['price'];?>" name="price" id=""><br><br>
                 Quantity:
                 <input type="text" value="<?php echo  $data['quantity'];?>" name="quantity" id=""><br><br><br>
-
+                <input type="hidden" name="fooditemid" value="<?php echo  $data['food_item_id']?>">
                 <button type="submit" name="update1" style="color: white;background-color: green;width: 120px;height: 50px">UPDATE</button>
 
 

@@ -2,7 +2,7 @@
 $con = mysqli_connect("localhost","root","","tasteohub");
 if (isset($_POST['update1'])) {
 
-    $ID =  $_POST['id'];
+    $ID =  $_POST['fooditemid'];
     $NAME = $_POST['name'];
     $PRICE = $_POST['price'];
     $QUANTITY=$_POST['quantity'];

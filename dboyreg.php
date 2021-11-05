@@ -116,7 +116,7 @@ body{
 <div class="topnav">
     <a class="active" href="adminhomepage.php">Add Image</a>
     <a href="adminofferpage.php">Offers</a>
-    <a href="#contact">Add Slot</a>
+    <a href="adminaddslot.php">Add Slot</a>
     <a href="#about">Car-dining</a>
     <a href="#about">Outside-dining</a>
     <a href="addfoodcategory.php">Home-delivery</a>
@@ -127,7 +127,7 @@ body{
 </div>
 <div class="registration-form">
 
-   <br><br><br> <h1>Registration Form</h1>
+   <br><br><br> <br><br><h1>Registration Form</h1>
 
 
     <form method="post">

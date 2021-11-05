@@ -1,11 +1,46 @@
 <?php
+
 $url="localhost";
 $username="root";
 $password="";
 $conn=mysqli_connect($url,$username,'',"tasteohub");
 
 session_start();
-$_SESSION['username'] = "<?php echo {['$username']} ?>";
+
+if(isset($_POST['save'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+
+    $check_user = "SELECT * FROM Login WHERE username='$username' AND password='$password'";
+
+    $run = mysqli_query($conn, $check_user);
+    $row = mysqli_fetch_array($run);
+
+
+    if($data=mysqli_num_rows($run)) {
+
+        $_SESSION['username']=$username;
+
+
+// $_SESSION['user']=$username;//here session is used and value of $user_email store in $_SESSION.
+        header("Location:userhomepage.php");
+
+    }
+
+
+    else
+    {
+        echo "<script>alert('Username or password is incorrect!')</script>";
+        echo "<script>window.open('userlogin.php','_self')</script>";
+    }
+
+
+}
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,48 +83,25 @@ $_SESSION['username'] = "<?php echo {['$username']} ?>";
             <input type="password" class="form-control" name="password" placeholder="Password" minlength="6" required="required">
         </div>
         <div class="form-group">
-            <center><button type="submit" name="save" class="btn btn-success btn-lg btn-block" style="width: 200px">Login</button></center>
-            <?php
-            if(isset($_POST['save']))
-            {
-                $username=$_POST['username'];
-                $password=$_POST['password'];
-                $usertype="USER";
-
-                $check_user="select * from register WHERE User_Name='$username'AND Password='$password'";
-
-                $run=mysqli_query($conn,$check_user);
-
-
-
-                if($data=mysqli_num_rows($run)) {
-
-
-                   session_start();
-                    $_SESSION['username'] = $username;
-
-                    // $_SESSION['user']=$username;//here session is used and value of $user_email store in $_SESSION.
-                    header("Location:userhomepage.php");
-
-                }
-
-
-                else
-                {
-                    echo "<script>alert('Username or password is incorrect!')</script>";
-                    echo "<script>window.open('userlogin.php','_self')</script>";
-                }
-
-
-            }
-
-            ?>
+            <button type="submit" name="save"  class="btn btn-success btn-lg btn-block" value="op=login&username=<?$_POST['username']?>">Login</button>
         </div>
-        <div class="text-center">Don't have an account? <a href="userregistration.php">Register Here</a></div>
     </form>
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -51,9 +51,9 @@
 <div class="topnav"><br><br><br>
     <a class="active" href="adminhomepage.php">Add Image</a>
     <a href="adminofferpage.php">Offers</a>
-    <a href="#contact">Add Slot</a>
-    <a href="#about">Car-dining</a>
-    <a href="#about">Outside-dining</a>
+    <a href="adminaddslot.php">Add Slot</a>
+    <a href="admincardining.php">Car-dining</a>
+    <a href="adminoutsidedining.php">Outside-dining</a>
     <a href="addfoodcategory.php">Home-delivery</a>
     <a href="#about">Orders</a>
     <a href="dboyreg.php">Delivery boys</a>
@@ -199,9 +199,7 @@ window.location.href='addfooditems.php';</script>";
     <table class="table" style="width: 1500px">
         <thead>
         <tr>
-            <th>Id</th>
 
-            <th>CategoryId</th>
             <th>Category Name</th>
             <th>Name</th>
             <th>Image</th>
@@ -217,14 +215,14 @@ window.location.href='addfooditems.php';</script>";
         <tbody>
         <?php
         $con = mysqli_connect("localhost","root","","tasteohub");
-        $pic = mysqli_query($con,"SELECT * FROM food_item");
+        $pic = mysqli_query($con,"SELECT food_item.food_item_id,food_item.name,food_item.price,food_item.quantity,food_item.fooditemimage,food_category.category_id,food_category.category_name from food_item inner join food_category on food_item.category_id=food_category.category_id");
+
 
         while ($row = mysqli_fetch_array($pic)){
             ?>
 
             <tr>
-                <td><?php echo $row['food_item_id'];?></td>
-                <td><?php echo $row['category_id'];?></td>
+
                 <td><?php echo $row['category_name'];?></td>
 
 
@@ -255,25 +253,4 @@ window.location.href='addfooditems.php';</script>";
 </html>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
