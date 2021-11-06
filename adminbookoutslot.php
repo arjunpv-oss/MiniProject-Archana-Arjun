@@ -12,7 +12,7 @@
 
 <head>
 
-    <title>User reservation</title>
+    <title>Admin outside reservation</title>
 
     <link rel="stylesheet" href="css/main.css" />
 
@@ -66,81 +66,61 @@
             }
 
 
+            $date = date('y-m-d');
 
-            $query="SELECT ddate FROM demo WHERE id=(SELECT max(id) FROM demo)";
-
-            $record=mysqli_query($conn,$query);
-            if(mysqli_num_rows($record) > 0)
-            {
-                while ($row = mysqli_fetch_assoc($record))
-                {
-                    $d=$row['ddate'];
-
-                    $records = mysqli_query($conn,"select * from oreservation where date_res='$d'");
+            $records = mysqli_query($conn,"select * from oreservation where date_res='$date'");
 
 
-                    if(isset($_POST['submit'])) {
+            if(isset($_POST['submit'])) {
 
 
 
 
-                        $guest = preg_replace("#[^0-9]#", "", $_POST['guest']);
+                $guest = preg_replace("#[^0-9]#", "", $_POST['guest']);
 
-                        $time = $_POST['time'];
-                        $slot=$_POST['slot'];
-                        $name=$_POST['name'];
-                        $suggestions = $_POST['suggestions'];
-                        $dining='Outside-dining';
-                        $status='Reserved';
+                $time = $_POST['time'];
+                $slot=$_POST['slot'];
+                $name=$_POST['name'];
+                $suggestions = $_POST['suggestions'];
 
 
 
-                        $insert ="INSERT INTO oreservation(no_of_guest,slot_number, name, date_res, time, suggestion,status) VALUES('$guest', '$slot','$name','$d', '$time', '$suggestions','$status')";
+                $insert ="INSERT INTO oreservation(no_of_guest,slot_number, name, date_res, time, suggestions) VALUES('$guest', '$slot','$name','$date', '$time', '$suggestions')";
+                $conn = mysqli_connect('localhost', 'root', '', "tasteohub");
+                $add="update addslot set status='Reserved' where slot_number='$slot'";
 
-                        $conn = mysqli_connect('localhost', 'root', '', "tasteohub");
-                        $add="update addslot set status='Reserved' where slot_number='$slot'";
-                        //$insert1 ="INSERT INTO reservation(dining_type,no_of_guest,slot_number, name, date_res, time, suggestions) VALUES('$dining','$guest', '$slot','$name','$d', '$time', '$suggestions')";
+                if (mysqli_query($conn, $insert)) {
+                    $message = "successful...";
 
-
-                        if (mysqli_query($conn, $insert)) {
-                            $message = "successful...";
-
-                            if (mysqli_query($conn, $add)) {
+                    if (mysqli_query($conn, $add)) {
 
 
-                                echo "<script type='text/javascript'>alert('successful...\\n REserved');
+                        echo "<script type='text/javascript'>alert('successful...\\n REserved');
               window.location.href='outsidereservation.php';</script>";
-
-                            }
-
-                        }
-
-
-
-
-
-                    }else{
-
-                        $msg = "<p style='padding: 15px; color: red; background: #ffeeee; font-weight: bold; font-size: 13px; border-radius: 4px; text-align: center;'>Incomplete form data or Invalid data type</p>";
-
-
-
 
                     }
 
-
-                    ?>
-
-
-
-
-                    <?php
                 }
+
+
+
+
+
+            }else{
+
+                $msg = "<p style='padding: 15px; color: red; background: #ffeeee; font-weight: bold; font-size: 13px; border-radius: 4px; text-align: center;'>Incomplete form data or Invalid data type</p>";
+
+
+
+
             }
 
 
-
             ?>
+
+
+
+
 
             <center>
                 <p style="color: black" >Time
@@ -156,7 +136,7 @@
             {
                 die('Could not Connect MySql Server:' .mysql_error());
             }
-            $query= "SELECT time FROM workingtime where time not in(select status='Available' from oreservation where date_res='$d')" ;
+            $query= "SELECT time FROM workingtime where time not in(select time from oreservation where date_res='$date')" ;
             //"SELECT slot_number FROM addslot WHERE dining_type='Car-dining' and status='Available' and slot_number NOT IN ( SELECT slot_number FROM addslot  WHERE addslot.slot_number = reservation.slot_number)";
 
 
@@ -187,14 +167,12 @@
             $username='root';
             $password='';
             $dbname = "tasteohub";
-
             $conn=mysqli_connect($host,$username,$password,"$dbname");
             if(!$conn)
             {
                 die('Could not Connect MySql Server:' .mysql_error());
             }
-            $query="SELECT slot_number FROM addslot where dining_type='Outside-dining' and status='Available' 
-                                  and slot_number in(select status='Available' from oreservation where date_res='$d')" ;
+            $query="SELECT slot_number FROM addslot where dining_type='Outside-dining' and status='Available' and slot_number  in(select status='Available' from oreservation where date_res='$date')" ;
 
 
 

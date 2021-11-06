@@ -63,7 +63,8 @@
         <div class="col-md-12">
             <div class="card mt-5">
                 <div class="card-header">
-                    <center> <h4>RESERVATIONS</h4></center>
+                    <center> <h4>RESERVATIONS</h4> <button style="color: white;background-color: green"><a style="background-color: green;color: white;alignment: right" href="adminbookoutslot.php" >BOOK SLOT</a></button></td>
+                    </center><br></center>
                 </div>
                 <div class="card-body">
 
@@ -102,6 +103,7 @@
                             <th>Name</th>
                             <th>Slot Number</th>
                             <th>Time</th>
+                            <th>Update</th>
 
                         </tr>
                         </thead>
@@ -129,6 +131,11 @@
                                         <td><?= $row['name']; ?></td>
                                         <td><?= $row['slot_number']; ?></td>
                                         <td><?= $row['time']; ?></td>
+
+                                        <td><button style="color: white;background-color: green"><a style="background-color: green;color: white" href="freeoutslot.php?op=update&slotnumber=<?php echo  $row['slot_number']?>" >FREE</a></button></td>
+
+
+
 
 
                                     </tr>
@@ -158,60 +165,6 @@
 
 
 
-<p style="margin-top: 300px"> <center> <h1>OUTSIDE DINING SLOT DETAILS</h1></center></p><br>
-<!--fetch data-->
-<div class="container">
-
-    <center>
-
-        <table class="table" style="width: 1500px">
-            <thead>
-            <tr>
-
-
-
-                <th>Category Name</th>
-                <th>Slot Number</th>
-                <th>Status</th>
-                <th>Update</th>
-
-
-
-
-            </tr>
-            </thead>
-            <tbody>
-
-
-            <?php
-            $con = mysqli_connect("localhost","root","","tasteohub");
-            $pic = mysqli_query($con,"SELECT addslot.dining_type,addslot.slot_number,status from addslot where dining_type='Outside-dining'");
-
-
-            while ($row = mysqli_fetch_array($pic)){
-                ?>
-
-                <tr>
-
-                    <td><?php echo $row['dining_type'];?></td>
-                    <td><?php echo $row['slot_number'];?></td>
-                    <td><?php echo $row['status'];?></td>
-
-                    <td><button style="color: white;background-color: green"><a style="background-color: green;color: white" href="updatecarslot.php?op=update&slotnumber=<?php echo  $row['slot_number']?>" >UPDATE</a></button></td>
-
-
-                    <td></td>
-                </tr>
-                <?php
-            }
-            ?>
-
-
-
-
-            </tbody>
-        </table>
-    </center>
 </div>
 </html>
 

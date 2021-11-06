@@ -82,10 +82,11 @@
                         $slot=$_POST['slot'];
                         $name=$_POST['name'];
                         $suggestions = $_POST['suggestions'];
+                        $status='Reserved';
 
 
 
-                        $insert ="INSERT INTO creservation(no_of_guest,slot_number, name, date_res, time, suggestions) VALUES('$guest', '$slot','$name','$date', '$time', '$suggestions')";
+                        $insert ="INSERT INTO creservation(no_of_guest,slot_number, name, date_res, time, suggestions,status) VALUES('$guest', '$slot','$name','$date', '$time', '$suggestions','$status')";
                         $conn = mysqli_connect('localhost', 'root', '', "tasteohub");
                         $add="update addslot set status='Reserved' where slot_number='$slot'";
 
@@ -172,7 +173,7 @@
             {
                 die('Could not Connect MySql Server:' .mysql_error());
             }
-            $query="SELECT slot_number FROM addslot where dining_type='Car-dining' and status='Available' and slot_number not in(select slot_number from creservation where date_res='$date')" ;
+            $query="SELECT slot_number FROM addslot where dining_type='Car-dining' and status='Available' and slot_number in(select status='Available' from creservation where date_res='$date')" ;
 
 
 

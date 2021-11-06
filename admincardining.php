@@ -165,65 +165,6 @@
 
 
 
-
-<p style="margin-top: 300px"> <center> <h1>CAR DINING SLOT DETAILS</h1></center></p><br>
-<!--fetch data-->
-<div class="container">
-
-    <center>
-
-        <table class="table" style="width: 1500px">
-            <thead>
-            <tr>
-
-
-
-
-                <th>Slot Number</th>
-                <th>Status</th>
-                <th>Update</th>
-
-
-
-
-            </tr>
-            </thead>
-            <tbody>
-
-
-            <?php
-            $con = mysqli_connect("localhost","root","","tasteohub");
-            $pic = mysqli_query($con,"SELECT addslot.slot_number,status from addslot where dining_type='Car-dining'");
-
-
-            while ($row = mysqli_fetch_array($pic)){
-                ?>
-
-                <tr>
-
-
-                    <td><?php echo $row['slot_number'];?></td>
-                    <td><?php echo $row['status'];?></td>
-
-                    <td><button style="color: white;background-color: green"><a style="background-color: green;color: white" href="updatecarslot.php?op=update&slotnumber=<?php echo  $row['slot_number']?>" >UPDATE</a></button></td>
-
-
-
-                    <td></td>
-                </tr>
-                <?php
-            }
-            ?>
-
-
-
-
-            </tbody>
-        </table>
-    </center>
-</div>
-
-
 </html>
 
 

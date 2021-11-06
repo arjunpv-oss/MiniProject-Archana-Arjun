@@ -86,15 +86,7 @@
 
             <p style="color: #0c0b09">Add slot
                 <input type="text" name="addslot" style="width: 300px;height: 30px" placeholder="Eg:CD1" required></p>
-            <p style="color: black" >status
-                <select name="status"  style="width: 250px; height: 40px" required>
-                    <option>Available</option>
-                    <option>Reserved</option>
-                    <option>Under-maintenance</option>
-
-
-                </select></p>
-<br>
+            <br>
             <button type="submit" name ="submit"  style="background-color: #0c4128; color: white; width: 100px; height: 50px">ADD SLOT</button>
 
         <?php
@@ -172,6 +164,7 @@ window.location.href='adminaddslot.php';</script>";
 
             <th>Category Name</th>
             <th>Slot Number</th>
+            <th>Status</th>
 
 
 
@@ -193,6 +186,9 @@ window.location.href='adminaddslot.php';</script>";
             <td><?php echo $row['slot_id'];?></td>
             <td><?php echo $row['dining_type'];?></td>
             <td><?php echo $row['slot_number'];?></td>
+            <td><?php echo $row['status'];?></td>
+            <td><button style="color: white;background-color: green"><a style="background-color: green;color: white" href="updateadminslot.php?op=update&slotnumber=<?php echo  $row['slot_number']?>" >UPDATE</a></button></td>
+
 
             <td></td>
         </tr>

@@ -54,8 +54,8 @@
   <a class="active" href="adminhomepage.php">Add Image</a>
   <a href="adminofferpage.php">Offers</a>
   <a href="adminaddslot.php">Add Slot</a>
-  <a href="#about">Car-dining</a>
-  <a href="#about">Outside-dining</a>
+  <a href="admincardining.php">Car-dining</a>
+  <a href="adminoutsidedining.php">Outside-dining</a>
   <a href="addfoodcategory.php">Home-delivery</a>
   <a href="#about">Orders</a>
   <a href="dboyreg.php">Delivery boys</a>

@@ -117,8 +117,8 @@ body{
     <a class="active" href="adminhomepage.php">Add Image</a>
     <a href="adminofferpage.php">Offers</a>
     <a href="adminaddslot.php">Add Slot</a>
-    <a href="#about">Car-dining</a>
-    <a href="#about">Outside-dining</a>
+    <a href="admincardining.php">Car-dining</a>
+    <a href="adminoutsidedining.php">Outside-dining</a>
     <a href="addfoodcategory.php">Home-delivery</a>
     <a href="#about">Orders</a>
     <a href="dboyreg.php">Delivery boys</a>
@@ -140,10 +140,9 @@ body{
         <p>Password:</p>
         <input type="password" name="password" placeholder="Password" minlength="6" maxlength="8" required>
         <p><br>Phone Number </p>
-        <!-- html input type=tel for phone number which contain a pattern -->
-        <input type="text" pattern="[0-9]{9}" maxlength="10" placeholder="phone number[0-9 only]" required>
-
-
+        <!-- html input type=tel for phone number which contain a pattern --><div class="form-group">
+            <input type="phonenumber" class="form-control" name="phonenumber" placeholder="Phone Number" minlength="10" maxlength="10" required="required">
+        </div>
         <p>Address:</p>
         <textarea placeholder="Address"    name="address"   cols="51" rows="5"></textarea>
         <div class="container">

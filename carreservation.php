@@ -90,12 +90,17 @@
                 $slot=$_POST['slot'];
                 $name=$_POST['name'];
                 $suggestions = $_POST['suggestions'];
+                $dining='Car-dining';
+                $status='Reserved';
 
 
 
-                $insert ="INSERT INTO creservation(no_of_guest,slot_number, name, date_res, time, suggestions) VALUES('$guest', '$slot','$name','$d', '$time', '$suggestions')";
+                $insert ="INSERT INTO creservation(no_of_guest,slot_number, name, date_res, time, suggestions,status) VALUES('$guest', '$slot','$name','$d', '$time', '$suggestions','$status')";
+
                 $conn = mysqli_connect('localhost', 'root', '', "tasteohub");
                 $add="update addslot set status='Reserved' where slot_number='$slot'";
+                //$insert1 ="INSERT INTO reservation(dining_type,no_of_guest,slot_number, name, date_res, time, suggestions) VALUES('$dining','$guest', '$slot','$name','$d', '$time', '$suggestions')";
+
 
                 if (mysqli_query($conn, $insert)) {
                     $message = "successful...";
@@ -151,7 +156,7 @@
                         {
                             die('Could not Connect MySql Server:' .mysql_error());
                         }
-                        $query= "SELECT time FROM workingtime where time not in(select time from creservation where date_res='$d')" ;
+                        $query= "SELECT time FROM workingtime where time not in(select status='Available' from creservation where date_res='$d')" ;
                         //"SELECT slot_number FROM addslot WHERE dining_type='Car-dining' and status='Available' and slot_number NOT IN ( SELECT slot_number FROM addslot  WHERE addslot.slot_number = reservation.slot_number)";
 
 
@@ -187,7 +192,8 @@
             {
                 die('Could not Connect MySql Server:' .mysql_error());
             }
-            $query="SELECT slot_number FROM addslot where dining_type='Car-dining' and status='Available' and slot_number not in(select slot_number from creservation where date_res='$d')" ;
+            $query="SELECT slot_number FROM addslot where dining_type='Car-dining' and status='Available' 
+                                  and slot_number in(select status='Available' from creservation where date_res='$d')" ;
 
 
 
