@@ -55,7 +55,7 @@
     <a href="admincardining.php">Car-dining</a>
     <a href="adminoutsidedining.php">Outside-dining</a>
     <a href="addfoodcategory.php">Home-delivery</a>
-    <a href="#about">Orders</a>
+    <a href="adminvieworder.php">Orders</a>
     <a href="dboyreg.php">Delivery boys</a>
     <a href="#about">Report</a>
     <a href="login.php">Logout</a>
@@ -63,7 +63,7 @@
 
 <div align="center" >
 
-    <br><br>
+    <br>
 
     <center><h1 style="color: #6a1a21"><u>ADD FOOD ITEMS</u></h1></center><br>
 
@@ -74,8 +74,8 @@
 
 
 
-        <p style="color: black" >category Name
-            <select name="category_id"  style="width: 250px; height: 40px" required>
+        <p style="color: black" >category Name<br><br>
+            <select name="category_id"  style="width: 350px; height: 40px" required>
                 <option>Select</option>
                 <?php
                 $host='localhost';
@@ -110,22 +110,28 @@
 
 
 
-        <br><br>
-        <div class="container">
 
 
-            <input type="file" name="image" style="color: #0c0b09" required>
-            <br>
+
+        <p style="color: #0c0b09">Name<br>
+            <input type="text" name="name" style="width: 350px;height: 40px" placeholder="Name" required></p>
+            <p style="color: #0c0b09">price<br>
+                <input type="number" name="price" style="width: 350px;height: 40px" placeholder="Price" min="0" max="1000" required></p>
+
+            <p style="color: #0c0b09">Quantity<br>
+                <input type="number" name="quantity" style="width: 350px;height: 40px" placeholder="Quantity" min="0" max="100" required></p>
 
 
-            <p style="color: #0c0b09">Name
-                <input type="text" name="name" style="width: 300px;height: 30px" placeholder="Name" required></p><br>
-            <p style="color: #0c0b09">price
-                <input type="number" name="price" style="width: 300px;height: 30px" placeholder="Price" min="0" max="1000" required></p><br>
+            <p style="color: #0c0b09">Description<br>
+                <input type="text" name="description" style="width: 350px;height: 70px" placeholder="description" required></p>
 
-            <p style="color: #0c0b09">Quantity
-                <input type="number" name="quantity" style="width: 300px;height: 30px" placeholder="Quantity" min="0" max="100" required></p>
-            <br><br><br>
+        <center><div class="container">
+
+
+                <input type="file" name="image" style="color: #0c0b09" required></center>
+        <br>
+
+        <br>
 
 
             <button type="submit" name ="submit"  style="background-color: #0c4128; color: white; width: 100px; height: 50px">ADD ITEM</button>
@@ -140,6 +146,7 @@
             $price = $_POST['price'];
             $quantity = $_POST['quantity'];
             $category_id = $_POST['category_id'];
+            $description=$_POST['description'];
 
             $IMAGE = $_FILES['image'];
 
@@ -164,7 +171,7 @@
             } else {
 
 
-                $sql = "INSERT INTO food_item(food_item_id,category_id,fooditemimage,name,price,quantity) VALUES ('','$category_id','$image','$name','$price','$quantity')";
+                $sql = "INSERT INTO food_item(food_item_id,category_id,fooditemimage,name,price,quantity,description) VALUES ('','$category_id','$image','$name','$price','$quantity','$description')";
 
 
                 $conn = mysqli_connect('localhost', 'root', '', "tasteohub");

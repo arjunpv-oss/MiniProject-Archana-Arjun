@@ -222,20 +222,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
             <div class="form_group">
-
-                <br><center><label>Date</label>
-                    <input type="date" name="date_res" id="date" placeholder="Select date for booking" style="width: 350px;height: 30px"
+                <div class="mb-2">
+                    <center><label class="form-label">Date</label>
+                    <input type="date" name="date_res" id="date" placeholder="Select date for booking" style="width: 250px;height: 40px"
                            onchange="FetchTime(this.value)" required></center>
 
 
-
+                </div>
 
             </div><br>
-            <center>
-                <p style="color: black" >Time
+            <div class="form_group">
+                <div class="mb-2">
+                   <br> <center>
+                <label class="form-label">Time</label>
                     <select name="time" id="time" style="width: 250px; height: 40px" required>
                         <option value="">Select</option>
                     </select></p></center>
+                </div>
+            </div>
             <br>
 
 
@@ -294,9 +298,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="left">
 
                 <div class="form_group">
+                    <div class="mb-2">
 
                     <br><center> <label>No of Guest</label>
-                        <input type="number" placeholder="How many guests" min="1" name="guest" id="guest" style="width: 480px;height: 30px" required><br></center>
+                        <input type="number" placeholder="How many guests" min="1" name="guest" id="guest" style="width: 250px;height: 40px" required><br></center>
 
                 </div>
 
@@ -308,10 +313,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="left">
 
                 <div class="form_group">
+                    <div class="mb-2">
 
                     <br><center><label>Suggestions <small><b>(E.g No of Plates, How you want the setup to be)</b></small></label>
                         <br> <br><center><textarea name="suggestions" placeholder="your suggestions" cols="40" rows="5" style="width: 520px;alignment: center" required></textarea></center>
 
+                </div>
                 </div>
 
                 <div class="form_group">

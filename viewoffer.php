@@ -15,7 +15,7 @@ die('Could not connect to mysql: ' .mysql_error());
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <link rel="stylesheet" href="deliveryreg.css">
     <style type="text/css">
         .bs-example{
             margin: 20px;
@@ -33,6 +33,7 @@ die('Could not connect to mysql: ' .mysql_error());
         background-image: url("viewoffer.jpg");
         background-repeat: no-repeat;
         background-size: cover;
+        height: 100px;
     }
 </style>
 <meta charset="UTF-8">
@@ -41,6 +42,7 @@ die('Could not connect to mysql: ' .mysql_error());
 <title>View offer</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 <style>
     input{
         margin: 10px;
@@ -64,9 +66,9 @@ die('Could not connect to mysql: ' .mysql_error());
 
 
 
-    <table class="table" style="width: 800px;margin-left: 300px">
+    <table class="table" style="width: 1500px; table-layout: fixed" >
         <thead>
-        <tr style="margin-left: 300px">
+        <tr style="margin-left: 300px; table-layout: auto">
 
             <th>Category Name</th>
             <th>offer %</th>

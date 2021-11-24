@@ -35,9 +35,9 @@ if(!$conn){
 </head>
 <style>
     body{
-        background-image: url("viewoffer.jpg");
+        background-image: url("userviewoffer1.jpg");
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 1500px;
     }
 </style>
 <meta charset="UTF-8">
@@ -48,7 +48,7 @@ if(!$conn){
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
     input{
-        margin: 10px;
+        margin: 20px;
     }
 </style>
 
@@ -64,9 +64,9 @@ if(!$conn){
 
 
 
-    <table class="table" style="width: 800px;margin-left: 300px">
+    <table class="table" style="width: 100px ;table-layout: auto">
     <thead>
-    <tr style="margin-left: 300px">
+    <tr style="margin-left: 100px">
 
         <th>Category Name</th>
         <th>offer %</th>

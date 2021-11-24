@@ -58,18 +58,24 @@ if(isset($_POST['save'])) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 </head>
+
+<body>
 <style>
 
     body{
+        flex: 1;
+        width: 100%;
+
+        max-height: 256px;
+        max-width: 256px;
 
         background-image: url("userlogin.jpg");
         background-repeat: no-repeat;
-        background-size: cover;
-        alignment: center;
+        background-position: center;
+        background-size: 2500px;
     }
 </style>
 <link rel="stylesheet" type="text/css" href="./userstyle.css">
-<body>
 
 <div class="login-form">
 
@@ -84,6 +90,9 @@ if(isset($_POST['save'])) {
         </div>
         <div class="form-group">
             <button type="submit" name="save"  class="btn btn-success btn-lg btn-block" value="op=login&username=<?$_POST['username']?>">Login</button>
+        </div>
+        <div class="container signin">
+            <p style="color: white">Not have an Account? <a href="userregistration.php">Sign Up</a></p>
         </div>
     </form>
 </div>

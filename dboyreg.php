@@ -43,6 +43,7 @@ if(isset($_POST['submit'])) {
 
      else {
          $sql = "INSERT INTO deliveryboy_registration (d_date,fullname,username,email_id,password,phoneno,status,address,image) VALUES ('$date','$fullname','$username','$email_id','$password','$phoneno','$status','$address','$image')";
+
          $insert_login = "INSERT INTO login(login_id,username,password,usertype) VALUES('','$username','$password','$usertype')";
 
          if (mysqli_query($conn, $insert_login))
@@ -78,9 +79,14 @@ if(isset($_POST['submit'])) {
 <style>
 
 
+
     .topnav {
         overflow: hidden;
         background-color: green;
+        width: 1700px;
+        height: :40px;
+        border-bottom: 10px;
+
     }
 
     .topnav a {
@@ -100,10 +106,71 @@ if(isset($_POST['submit'])) {
 
 
 
+    .topnav ul
+    {
+        display: inline-flex;
+        list-style: none;
+        color: #fff;
 
 
 
-body{
+    }
+    .topnav ul li
+    {
+
+        width: 130px;
+        height: 70px;
+        margin: 2px;
+        padding: 8px;
+    }
+    .topnav ul li a
+    {
+        text-decoration: none;
+        color: #fff;
+
+    }
+    .topnav ul li:hover
+    {
+
+        border-radius: 10px;
+        background-color: darkolivegreen;
+        transition: 0.30s linear;
+        color: white;
+
+    }
+    .topnav li:hover > a{
+        color: lightgreen;
+    }
+    .sub-menu-1
+    {
+        display: none;
+    }
+    .topnav ul li:hover .sub-menu-1
+    {
+        display: block;
+        position: absolute;
+        background: rgb(0,100,0);
+        margin-top: 15px;
+        margin-left: -15px;
+
+    }
+    .topnav ul li:hover .sub-menu-1 ul
+    {
+        display: block;
+        margin: 10px;
+
+    }
+    .topnav ul li:hover .sub-menu-1 ul li
+    {
+        width: 150px;
+        padding: 10px;
+        /*border-bottom: 1px dotted #fff;*/
+        background: transparent;
+        border-radius: 0;
+        text-align: left;
+    }
+
+    body{
         background-image: url("registration.jpg");
         background-repeat: no-repeat;
         background-size: cover;
@@ -112,23 +179,43 @@ body{
 
 
 
+
+
+
 <body>
 <div class="topnav">
-    <a class="active" href="adminhomepage.php">Add Image</a>
-    <a href="adminofferpage.php">Offers</a>
-    <a href="adminaddslot.php">Add Slot</a>
-    <a href="admincardining.php">Car-dining</a>
-    <a href="adminoutsidedining.php">Outside-dining</a>
-    <a href="addfoodcategory.php">Home-delivery</a>
-    <a href="#about">Orders</a>
-    <a href="dboyreg.php">Delivery boys</a>
-    <a href="#about">Report</a>
-    <a href="login.php">Logout</a>
+    <ul>
+        <li><a class="active" href="adminhomepage.php">Add Image</a></li>
+        <li><a href="adminofferpage.php">Offers</a></li>
+        <li><a href="adminaddslot.php">Add Slot</a></li>
+        <li><a href="admincardining.php">Car-dining</a></li>
+        <li><a href="adminoutsidedining.php">Outside-dining</a></li>
+        <li><a href="addfoodcategory.php">Home-delivery</a></li>
+        <li> <a href="#about">Orders</a></li>
+
+
+        <li style="margin-top: 0px"><a href="#">Delivery boys</a>
+            <div class="sub-menu-1">
+                <ul>
+                    <li><a href="dboyreg.php">Registration</a></li>
+                    <li><a href="deliveryboys.php">Available Delivery Boys</a></li>
+                    <li><a href="allocatedeliveryboy.php">Allocation</a></li>
+                </ul>
+            </div>
+        </li>
+        <li><a href="#about">Report</a></li>
+        <li><a href="login.php">Logout</a></li>
+    </ul>
 </div>
+
+
+<br><br>
+
+
 <div class="registration-form">
 
-   <br><br><br> <br><br><h1>Registration Form</h1>
 
+<br><br><br><br><br>
 
     <form method="post">
         <p>Full Name:</p>
@@ -141,7 +228,7 @@ body{
         <input type="password" name="password" placeholder="Password" minlength="6" maxlength="8" required>
         <p><br>Phone Number </p>
         <!-- html input type=tel for phone number which contain a pattern --><div class="form-group">
-            <input type="phonenumber" class="form-control" name="phonenumber" placeholder="Phone Number" minlength="10" maxlength="10" required="required">
+            <input type="phonenumber" class="form-control" name="phoneno" placeholder="Phone Number" minlength="10" maxlength="10" required="required">
         </div>
         <p>Address:</p>
         <textarea placeholder="Address"    name="address"   cols="51" rows="5"></textarea>

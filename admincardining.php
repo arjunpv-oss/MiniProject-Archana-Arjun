@@ -7,12 +7,16 @@
     <title>Amin view cardining</title>
     <link rel="stylesheet">
 </head>
+
 <style>
 
     .topnav {
         overflow: hidden;
         background-color: green;
-        margin-top: -50px;
+        width: 1600px;
+        height: :40px;
+        border-bottom: 10px;
+
     }
 
     .topnav a {
@@ -21,7 +25,7 @@
         text-align: center;
         padding: 16px 20px;
         text-decoration: none;
-        font-size: 25px;
+        font-size: 23px;
     }
 
     .topnav a:hover {
@@ -29,12 +33,46 @@
         color: orangered;
     }
 
+    .topnav ul
+    {
+        display: inline-flex;
+        list-style: none;
+        color: #fff;
 
+
+
+    }
+    .topnav ul li
+    {
+
+        width: 120px;
+        height: 80px;
+        margin: 10px;
+        padding: 10px;
+    }
+    .topnav ul li a
+    {
+        text-decoration: none;
+        color: #fff;
+
+    }
+    .topnav ul li:hover
+    {
+
+        border-radius: 10px;
+        background-color: darkolivegreen;
+        transition: 0.30s linear;
+        color: white;
+
+    }
+    .topnav li:hover > a{
+        color: lightgreen;
+    }
 </style>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Admin cardining</title>
+<title>Adminoutsidedining</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
@@ -44,19 +82,31 @@
 </style>
 
 <body>
-<div class="topnav"><br><br><br>
-    <a class="active" href="adminhomepage.php">Add Image</a>
-    <a href="adminofferpage.php">Offers</a>
-    <a href="adminaddslot.php">Add Slot</a>
-    <a href="admincardining.php">Car-dining</a>
-    <a href="adminoutsidedining.php">Outside-dining</a>
-    <a href="addfoodcategory.php">Home-delivery</a>
-    <a href="#about">Orders</a>
-    <a href="dboyreg.php">Delivery boys</a>
-    <a href="#about">Report</a>
-    <a href="login.php">Logout</a>
-</div><br>
+<div class="topnav">
+    <ul>
+        <li><a class="active" href="adminhomepage.php">Add Image</a></li>
+        <li><a href="adminofferpage.php">Offers</a></li>
+        <li><a href="adminaddslot.php">Add Slot</a></li>
+        <li><a href="admincardining.php">Car-dining</a></li>
+        <li><a href="adminoutsidedining.php">Outside-dining</a></li>
+        <li><a href="addfoodcategory.php">Home-delivery</a></li>
+        <li> <a href="adminvieworder.php">Orders</a></li>
 
+
+        <li style="margin-top: 0px"><a href="#">Delivery boys</a>
+
+        </li>
+        <li><a href="#about">Report</a></li>
+        <li><a href="login.php">Logout</a></li>
+    </ul>
+</div>
+
+
+
+
+
+
+<br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -65,7 +115,7 @@
 
 
 
-                    <center> <h4>RESERVATIONS</h4>  <button style="color: white;background-color: green"><a style="background-color: green;color: white;alignment: right" href="adminbookcarslot.php" >BOOK SLOT</a></button></td>
+                    <center> <h4>CAR DINING RESERVATIONS</h4>  <button style="color: white;background-color: green"><a style="background-color: green;color: white;alignment: right" href="admincarbook.php" >BOOK SLOT</a></button></td>
                     </center><br>
 
 
@@ -107,7 +157,7 @@
                             <th>Name</th>
                             <th>Slot Number</th>
                             <th>Time</th>
-                            <th>Update</th>
+
 
                         </tr>
                         </thead>
@@ -135,9 +185,6 @@
                                         <td><?= $row['name']; ?></td>
                                         <td><?= $row['slot_number']; ?></td>
                                         <td><?= $row['time']; ?></td>
-
-                                        <td><button style="color: white;background-color: green"><a style="background-color: green;color: white" href="freecarslot.php?op=update&slotnumber=<?php echo  $row['slot_number']?>" >FREE</a></button></td>
-
 
 
                                     </tr>

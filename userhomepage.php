@@ -1,6 +1,7 @@
 <?php
 $conn = mysqli_connect("localhost","root","","tasteohub");
 session_start();
+$name= $_SESSION['username'];
 
 $result= mysqli_query($conn,"SELECT * FROM register WHERE User_Name='" . $_SESSION['username'] . "'");
 
@@ -43,17 +44,17 @@ while ($stmt->fetch()) {
     <header>Taste 'O' Hub</header>
      <ul>
         <li><a href="profile.php?id=<?php echo $row["id"];?>"><i class=""></i>View Profile</a> </li>
-        <li><a href="usercategory.html"><i class=""></i>Categories</a> </li>
+        <li><a href="usercategory.php?id=<?php echo $row["id"];?>"><i class=""></i>Categories</a> </li>
         <li><a href="addslot.php"><i class=""></i>Order history</a> </li>
         <li><a href="userviewoffer.php"><i class=""></i>Offers</a> </li>
-        <li><a href="#"><i class=""></i>Notifications</a> </li>
+        <li><a href="usernotification.php?name=<?php echo $name;?>"><i class=""></i>Notifications</a> </li>
         <li><a href="foodcategory.php"><i class=""></i>About Us</a> </li>
         <li><a href="#"><i class=""></i>Share</a> </li>
         <li><a href="userlogout.php"><i class=""></i>Logout</a> </li>
     </ul>
 </div>
   <!-- may set first image src in markup so initially visible -->
-  <img id="slide" src="tasteohub.jpg" alt="slideshow" width="350" height="600" style="margin-top: 70px; margin-left: 30px"  align="center">
+  <img id="slide" src="tasteohub.jpg" alt="slideshow" width="300" height="650" style="margin-top: 70px; margin-left: 30px"  align="center">
 
 
 

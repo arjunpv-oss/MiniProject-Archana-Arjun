@@ -24,6 +24,8 @@
 <body><br><br>
 <p><center><h1>UPDATE FOOD ITEM DETAILS</h1></center></p>
 <?php
+
+
 $con = mysqli_connect("localhost","root","","tasteohub");
 
 

@@ -10,77 +10,145 @@
 <style>
 
 
-  .topnav {
-    overflow: hidden;
-    background-color: green;
-  }
 
-  .topnav a {
-    float:left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 16px 20px;
-    text-decoration: none;
-    font-size: 26px;
-  }
+    .topnav {
+        overflow: hidden;
+        background-color: green;
+        width: 1500px;
+        height: :40px;
+        border-bottom: 10px;
 
-  .topnav a:hover {
-    background-color: #ddd;
-    color: orangered;
-  }
+    }
+
+    .topnav a {
+        float:left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 16px 20px;
+        text-decoration: none;
+        font-size: 25px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: orangered;
+    }
 
 
 
-  body{
-    background-image: url("adminofferimage.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+    body{
+        background-image: url("adminaddimage.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        alignment: center;
+    }
 
-  .adminofferpage-form input{
-    font-size: 10px;
-    width: 100px;
 
-  }
+    .topnav ul
+    {
+        display: inline-flex;
+        list-style: none;
+        color: #fff;
+
+
+
+    }
+    .topnav ul li
+    {
+
+        width: 120px;
+        height: 70px;
+        margin: 2px;
+        padding: 8px;
+    }
+    .topnav ul li a
+    {
+        text-decoration: none;
+        color: #fff;
+
+    }
+    .topnav ul li:hover
+    {
+
+        border-radius: 10px;
+        background-color: darkolivegreen;
+        transition: 0.30s linear;
+        color: white;
+
+    }
+    .topnav li:hover > a{
+        color: lightgreen;
+    }
+    .sub-menu-1
+    {
+        display: none;
+    }
+    .topnav ul li:hover .sub-menu-1
+    {
+        display: block;
+        position: absolute;
+        background: rgb(0,100,0);
+        margin-top: 15px;
+        margin-left: -15px;
+
+    }
+    .topnav ul li:hover .sub-menu-1 ul
+    {
+        display: block;
+        margin: 10px;
+
+    }
+    .topnav ul li:hover .sub-menu-1 ul li
+    {
+        width: 150px;
+        padding: 10px;
+        /*border-bottom: 1px dotted #fff;*/
+        background: transparent;
+        border-radius: 0;
+        text-align: left;
+    }
 
 </style>
-
-
-
-
-
 <body>
 <div class="topnav">
-  <a class="active" href="adminhomepage.php">Add Image</a>
-  <a href="adminofferpage.php">Offers</a>
-  <a href="adminaddslot.php">Add Slot</a>
-  <a href="admincardining.php">Car-dining</a>
-  <a href="adminoutsidedining.php">Outside-dining</a>
-  <a href="addfoodcategory.php">Home-delivery</a>
-  <a href="#about">Orders</a>
-  <a href="dboyreg.php">Delivery boys</a>
-  <a href="#about">Report</a>
-  <a href="login.php">Logout</a>
+    <ul>
+        <li><a class="active" href="adminhomepage.php">Add Image</a></li>
+        <li><a href="adminofferpage.php">Offers</a></li>
+        <li><a href="adminaddslot.php">Add Slot</a></li>
+        <li><a href="admincardining.php">Car-dining</a></li>
+        <li><a href="adminoutsidedining.php">Outside-dining</a></li>
+        <li><a href="addfoodcategory.php">Home-delivery</a></li>
+        <li> <a href="adminvieworder.php">Orders</a></li>
+
+
+        <li style="margin-top: 0px"><a href="#">Delivery boys</a>
+            <div class="sub-menu-1">
+                <ul>
+                    <li><a href="dboyreg.php">Registration</a></li>
+                    <li><a href="deliveryboys.php">Available Delivery Boys</a></li>
+                    <li><a href="allocatedeliveryboy.php">Allocation</a></li>
+                </ul>
+            </div>
+        </li>
+        <li><a href="#about">Report</a></li>
+        <li><a href="login.php">Logout</a></li>
+    </ul>
 </div>
 
-<div style="padding-left:16px">
-
-
-</div>
 
 <div align="center">
   <div class="adminofferpage-form">
 
 
 
-  <center><h1 >OFFERS</h1></center><p align="right"><a href="viewoffer.php">VIEW ALL</a></p>
+  <p align="right"><a href="viewoffer.php">VIEW ALL</a></p>
 
 
   <form method="post">
 
 
 
-   <b>category Name</b>
+   <b>Category Name</b><br>
         <select name="category_id" style="width: 500px;height: 30px" required>
             <option disabled selected>-- Select category --</option>
             <?php
@@ -104,18 +172,19 @@
 
             ?>
 
-        </select>   <br><br> <br> <b>Offer percentage</b>
-          <input type="number" name="offerpercentage" style="width: 480px;height: 30px" placeholder="offer percentage(%)" required></p><br>
-      <b>Valid From</b>
-          <input type="date" name="validfrom" style="width: 520px;height: 30px" placeholder="valid from" required></p>
-      <br>
-     <b>Valid To</b>
-          <input type="date" name="validto" style="width: 550px;height: 30px" placeholder="valid to"  required></p>
-      <br>
-      <b>Coupon code</b>
-          <input type="text" name="couponcode" style="width: 510px;height: 30px" placeholder="coupon code" required ></p><br>
+        </select>   <br><br> <b>Offer Percentage</b><br>
+          <input type="number" name="offerpercentage" style="width: 490px;height: 30px" placeholder="offer percentage(%)" required></p>
+      <b>Valid From</b><br>
+          <input type="date" name="validfrom" style="width: 500px;height: 30px" placeholder="valid from" required></p>
 
-          <textarea placeholder="Description"    name="description"   cols="40" rows="5" style="width: 500px;alignment: center"></textarea>
+     <b>Valid To</b><br>
+          <input type="date" name="validto" style="width: 500px;height: 30px" placeholder="valid to"  required></p>
+
+      <b>Coupon code</b><br>
+          <input type="text" name="couponcode" style="width: 500px;height: 30px" placeholder="coupon code" required ></p>
+
+      <b>Description</b><br>
+      <textarea placeholder="Description"    name="description"   cols="40" rows="5" style="width: 500px;alignment: center"></textarea>
           <br><br>
 
 

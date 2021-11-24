@@ -11,7 +11,7 @@ if(!$conn){
     die('Could not connect to mysql: ' .mysql_error());
 }
 if (isset($_POST['submit'])) {
-    $datee = $_POST['ddate'];
+    $datee = date('y-m-d');
     $time=$_POST['time'];
 
 
@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
         $message = "successful...";
 
         echo "<script type='text/javascript'>alert('Done...\\n Fetching other details');
-window.location.href='carreservation.php';</script>";
+window.location.href='adminbookoutslot.php';</script>";
 
 
     }
@@ -45,14 +45,14 @@ window.location.href='carreservation.php';</script>";
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Car-dining reservation</title>
+    <title>Admin Outside-dining reservation</title>
     <link rel="stylesheet">
 </head>
 <style>
     body{
         background-image: url("usercarreservation.jpg");
         background-repeat: no-repeat;
-        background-size: 1000px;
+        background-size: cover;
         height: 600px;
 
     }
@@ -61,24 +61,16 @@ window.location.href='carreservation.php';</script>";
 </style>
 
 
-<p align="left"><a href="usercategory.php">Go Back</a></p>
-
-
-
-<form action="" method="post"><br><br>
-<h1 align="center">SELECT DATE AND TIME</h1><br>
-    <center><h3>NB: slot reservation can be done for one hour only</h3></center>
-
-    <br><br><br>
-    <div class="form_group">
-
-        <br><center><label>Date</label>
-            <input type="date" name="ddate" placeholder="Select date for booking" style="width: 250px;height: 30px" required></center></div>
 
 
 
 
-    <br><br><br>
+
+
+<form action="" method="post"><br>
+    <h1 align="center">SELECT TIME</h1>
+    <br><br>
+
     <div class="form_group">
 
         <br><center><label>Time</label>
@@ -103,14 +95,14 @@ window.location.href='carreservation.php';</script>";
             </select></center></div>
 
 
-<br>
+    <br>
 
 
 
-<br><br>
+    <br><br>
 
-                <center><a href="carreservation.php?&datee=<?php echo $row['ddate']?>"> <button style="color: white;background-color: green; width: 100px" value="submit" name="submit"></a>SEARCH</button>
-               </center>
-                </div>
+    <center><a href="adminbookoutslot.php?&datee=<?php echo $row['ddate']?>"> <button style="color: white;background-color: green" value="submit" name="submit"></a>SEARCH</button>
+    </center>
+    </div>
 </form>
 </html>

@@ -23,8 +23,8 @@ if (isset($_POST['update1'])) {
         ?>
         <script>
             alert('Slot updated');
-            window.location.href='updateadminslot.php?updated';
-            header("location:updateadminslot.php");
+            window.location.href='adminaddslot.php?updated';
+            header("location:adminaddslot.php");
         </script>
         <?php
 

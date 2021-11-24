@@ -92,7 +92,7 @@ if (strcmp($pass, $cpass) !== 0) {
             <input type="Area" class="form-control" name="area" placeholder="Area" required="required">
         </div>
         <div class="form-group">
-            <input type="phonenumber" class="form-control" name="phonenumber" placeholder="Phone Number" minlength="10" maxlength="10" required="required">
+            <input type="phonenumber" class="form-control" name="phonenumber" placeholder="Phone Number" minlength="10" maxlength="10" align="right" required="required">
         </div>
         <div class="form-group">
             <input type="password" class="form-control" name="pass" placeholder="Password"  minlength="6"  maxlength="8" required="required">

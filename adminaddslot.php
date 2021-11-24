@@ -7,10 +7,17 @@
 </head>
 <style>
 
+
+
+
+
     .topnav {
         overflow: hidden;
         background-color: green;
-        margin-top: -50px;
+        width: 1500px;
+        height: :40px;
+        border-bottom: 10px;
+
     }
 
     .topnav a {
@@ -28,10 +35,77 @@
     }
 
 
+
     body{
-        background-image: url("addfooditems.jpg");
+        background-image: url("adminaddimage.jpg");
         background-repeat: no-repeat;
         background-size: cover;
+        alignment: center;
+    }
+
+
+    .topnav ul
+    {
+        display: inline-flex;
+        list-style: none;
+        color: #fff;
+
+
+
+    }
+    .topnav ul li
+    {
+
+        width: 120px;
+        height: 70px;
+        margin: 2px;
+        padding: 8px;
+    }
+    .topnav ul li a
+    {
+        text-decoration: none;
+        color: #fff;
+
+    }
+    .topnav ul li:hover
+    {
+
+        border-radius: 10px;
+        background-color: darkolivegreen;
+        transition: 0.30s linear;
+        color: white;
+
+    }
+    .topnav li:hover > a{
+        color: lightgreen;
+    }
+    .sub-menu-1
+    {
+        display: none;
+    }
+    .topnav ul li:hover .sub-menu-1
+    {
+        display: block;
+        position: absolute;
+        background: rgb(0,100,0);
+        margin-top: 15px;
+        margin-left: -15px;
+
+    }
+    .topnav ul li:hover .sub-menu-1 ul
+    {
+        display: block;
+        margin: 10px;
+
+    }
+    .topnav ul li:hover .sub-menu-1 ul li
+    {
+        width: 150px;
+        padding: 10px;
+        /*border-bottom: 1px dotted #fff;*/
+        background: transparent;
+        border-radius: 0;
+        text-align: left;
     }
 </style>
 <meta charset="UTF-8">
@@ -39,7 +113,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Doc</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 <style>
     input{
         margin: 10px;
@@ -47,24 +121,36 @@
 </style>
 
 <body>
-<div class="topnav"><br><br><br>
-    <a class="active" href="adminhomepage.php">Add Image</a>
-    <a href="adminofferpage.php">Offers</a>
-    <a href="adminaddslot.php">Add Slot</a>
-    <a href="admincardining.php">Car-dining</a>
-    <a href="adminoutsidedining.php">Outside-dining</a>
-    <a href="addfoodcategory.php">Home-delivery</a>
-    <a href="#about">Orders</a>
-    <a href="dboyreg.php">Delivery boys</a>
-    <a href="#about">Report</a>
-    <a href="login.php">Logout</a>
+<div class="topnav">
+    <ul>
+        <li><a class="active" href="adminhomepage.php">Add Image</a></li>
+        <li><a href="adminofferpage.php">Offers</a></li>
+        <li><a href="adminaddslot.php">Add Slot</a></li>
+        <li><a href="admincardining.php">Car-dining</a></li>
+        <li><a href="adminoutsidedining.php">Outside-dining</a></li>
+        <li><a href="addfoodcategory.php">Home-delivery</a></li>
+        <li> <a href="adminvieworder.php">Orders</a></li>
+
+
+        <li style="margin-top: 0px"><a href="#">Delivery boys</a>
+            <div class="sub-menu-1">
+                <ul>
+                    <li><a href="dboyreg.php">Registration</a></li>
+                    <li><a href="deliveryboys.php">Available Delivery Boys</a></li>
+                    <li><a href="allocatedeliveryboy.php">Allocation</a></li>
+                </ul>
+            </div>
+        </li>
+        <li><a href="#about">Report</a></li>
+        <li><a href="login.php">Logout</a></li>
+    </ul>
 </div><br>
 
 <div align="center" >
 
     <br><br>
 
-    <center><h1 style="color: #6a1a21"><u>ADD SLOT</u></h1></center><br>
+   <br><br><br><br>
 
 
 
@@ -73,8 +159,8 @@
 
 
 
-        <p style="color: black" >Category Name
-            <select name="category_name"  style="width: 250px; height: 40px" required>
+        <p style="color: black" >Category Name<br><br>
+            <select name="category_name"  style="width: 350px; height: 40px" required>
                 <option>Select</option>
                 <option>Car-dining</option>
                 <option>Outside-dining</option>
@@ -84,8 +170,8 @@
 
 
 
-            <p style="color: #0c0b09">Add slot
-                <input type="text" name="addslot" style="width: 300px;height: 30px" placeholder="Eg:CD1" required></p>
+            <p style="color: #0c0b09">Add slot<br>
+                <input type="text" name="addslot" style="width: 350px;height: 40px" placeholder="Eg:CD1" required></p>
             <br>
             <button type="submit" name ="submit"  style="background-color: #0c4128; color: white; width: 100px; height: 50px">ADD SLOT</button>
 

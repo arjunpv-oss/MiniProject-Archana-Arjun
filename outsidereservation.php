@@ -12,7 +12,7 @@
 
 <head>
 
-    <title>User reservation</title>
+    <title>User outside reservation</title>
 
     <link rel="stylesheet" href="css/main.css" />
 
@@ -33,7 +33,7 @@
 <body>
 
 
-
+<p align="left"><a href="useroutsidedining.php">Go Back</a></p>
 <div class="parallax" onclick="remove_class()">
 
     <div class="parallax_head">
@@ -67,7 +67,7 @@
 
 
 
-            $query="SELECT ddate FROM demo WHERE id=(SELECT max(id) FROM demo)";
+            $query="SELECT ddate,time FROM demo WHERE id=(SELECT max(id) FROM demo)";
 
             $record=mysqli_query($conn,$query);
             if(mysqli_num_rows($record) > 0)
@@ -75,6 +75,8 @@
                 while ($row = mysqli_fetch_assoc($record))
                 {
                     $d=$row['ddate'];
+                    $t=$row['time'];
+
 
                     $records = mysqli_query($conn,"select * from oreservation where date_res='$d'");
 
@@ -86,7 +88,6 @@
 
                         $guest = preg_replace("#[^0-9]#", "", $_POST['guest']);
 
-                        $time = $_POST['time'];
                         $slot=$_POST['slot'];
                         $name=$_POST['name'];
                         $suggestions = $_POST['suggestions'];
@@ -95,7 +96,7 @@
 
 
 
-                        $insert ="INSERT INTO oreservation(no_of_guest,slot_number, name, date_res, time, suggestion,status) VALUES('$guest', '$slot','$name','$d', '$time', '$suggestions','$status')";
+                        $insert ="INSERT INTO oreservation(no_of_guest,slot_number, name, date_res, time, suggestion,status) VALUES('$guest', '$slot','$name','$d', '$t', '$suggestions','$status')";
 
                         $conn = mysqli_connect('localhost', 'root', '', "tasteohub");
                         $add="update addslot set status='Reserved' where slot_number='$slot'";
@@ -109,7 +110,7 @@
 
 
                                 echo "<script type='text/javascript'>alert('successful...\\n REserved');
-              window.location.href='outsidereservation.php';</script>";
+              window.location.href='usercategory.php';</script>";
 
                             }
 
@@ -142,59 +143,26 @@
 
             ?>
 
-            <center>
-                <p style="color: black" >Time
-                    <select name="time" id="time" style="width: 250px; height: 40px" required></center>
-            <option>Select</option>
-            <?php
-            $host='localhost';
-            $username='root';
-            $password='';
-            $dbname = "tasteohub";
-            $conn=mysqli_connect($host,$username,$password,"$dbname");
-            if(!$conn)
-            {
-                die('Could not Connect MySql Server:' .mysql_error());
-            }
-            $query= "SELECT time FROM workingtime where time not in(select status='Available' from oreservation where date_res='$d')" ;
-            //"SELECT slot_number FROM addslot WHERE dining_type='Car-dining' and status='Available' and slot_number NOT IN ( SELECT slot_number FROM addslot  WHERE addslot.slot_number = reservation.slot_number)";
 
 
-            $result=mysqli_query($conn,$query);
-            if(mysqli_num_rows($result) > 0)
-            {
-                while ($row = mysqli_fetch_assoc($result))
-                {
-                    ?>
-                    <option>
-                        <?php echo $row['time'] ?></option>
-                    <?php
-                }
-            }
-
-            ?>
-
-            </select></p>
 
             <br>
 
 
-            <center> <p style="color: black">Choose slot
-                    <select name="slot"  style="width: 250px; height: 40px" required></center>
+            <center> <p style="color: black">Choose slot<br>
+                    <select name="slot"  style="width: 450px; height: 40px" required></center>
             <option>Select</option>
             <?php
             $host='localhost';
             $username='root';
             $password='';
             $dbname = "tasteohub";
-
             $conn=mysqli_connect($host,$username,$password,"$dbname");
             if(!$conn)
             {
                 die('Could not Connect MySql Server:' .mysql_error());
             }
-            $query="SELECT slot_number FROM addslot where dining_type='Outside-dining' and status='Available' 
-                                  and slot_number in(select status='Available' from oreservation where date_res='$d')" ;
+            $query="SELECT slot_number FROM addslot where dining_type='Outside-dining' and status!='Under-maintenance'and slot_number not in(select slot_number from oreservation where status='Reserved' and date_res='$d' and time='$t')" ;
 
 
 
@@ -244,8 +212,8 @@
 
                 <div class="form_group">
 
-                    <br><center> <label>Name</label>
-                        <input type="text" placeholder="Name" min="1" name="name" id="name" style="width: 480px;height: 30px" required><br></center>
+                    <center> <label>Name</label><br>
+                        <input type="text" placeholder="Name" min="1" name="name" id="name" style="width: 450px;height: 40px" required><br></center>
 
                 </div>
 
@@ -257,8 +225,8 @@
 
                     <div class="form_group">
 
-                        <br><center> <label>No of Guest</label>
-                            <input type="number" placeholder="How many guests" min="1" name="guest" id="guest" style="width: 480px;height: 30px" required><br></center>
+                        <br><center> <label>No of Guest</label><br>
+                            <input type="number" placeholder="How many guests" min="1" name="guest" id="guest" style="width: 450px;height: 40px" required><br></center>
 
                     </div>
 
@@ -271,14 +239,14 @@
 
                     <div class="form_group">
 
-                        <br><center><label>Suggestions <small><b>(E.g No of Plates, How you want the setup to be)</b></small></label>
-                            <br> <br><center><textarea name="suggestions" placeholder="your suggestions" cols="40" rows="5" style="width: 520px;alignment: center"></textarea></center>
+                        <br><center><label>Suggestions <small><b>(E.g No of Plates, How you want the setup to be)</b></small></label><br>
+                            <br> <br><center><textarea name="suggestions" placeholder="your suggestions" cols="40" rows="5" style="width: 450px;alignment: center"></textarea></center>
 
                     </div>
 
                     <div class="form_group">
 
-                        <br><center><input type="submit" class="submit" name="submit" style="background-color: green;color: white" value="MAKE YOUR BOOKING" /></center>
+                        <br><center><input type="submit" class="submit" name="submit" style="background-color: green;color: white; width: 200px;height: 40px" value="MAKE YOUR BOOKING" /></center>
 
                     </div>
 

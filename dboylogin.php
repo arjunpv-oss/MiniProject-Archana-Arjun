@@ -7,7 +7,6 @@ $user = "root";
 $pass = "";
 $db = "tasteohub";
 
-
 $conn = mysqli_connect($host, $user, $pass, $db);
 if (!$conn) {
     die('Could not connect to mysql: ' . mysql_error());
@@ -22,7 +21,8 @@ if(isset($_POST['save'])) {
     $run = mysqli_query($conn, $check_user);
 
     if (mysqli_num_rows($run)) {
-        echo "<script>window.open('userhomepage.php','_self')</script>";
+        $_SESSION['username']=$username;
+        echo "<script>window.open('dboyhomepage.php','_self')</script>";
     }
 
     else {

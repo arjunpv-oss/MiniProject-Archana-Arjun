@@ -5,9 +5,9 @@ $password="";
 $dbname="tasteohub";
 $conn= mysqli_connect($servername, $username, $password, $dbname);
 
-    $del_category=$_GET['category_image'];
+    $del_category=$_GET['category_name'];
 
-    $result=mysqli_query($conn,"DELETE FROM food_category WHERE category_image='$del_category'");
+    $result=mysqli_query($conn,"DELETE FROM food_category WHERE category_name='$del_category'");
 
     if ($result){
         ?>
@@ -16,7 +16,7 @@ $conn= mysqli_connect($servername, $username, $password, $dbname);
             window.location.href='addfoodcategory.php?deleted';
         </script>
         <?php
-        unlink("food/$del_category");
+
     }
     else{
         ?>
